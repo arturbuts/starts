@@ -1,3 +1,50 @@
-h1 {
-background-color: #fff;
+html {
+	box-sizing: border-box;
+  // font-size: var(--main-font-size);
+}
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+}
+img {
+  display: block;
+	max-width: 100%;
+}
+body {
+  min-width: 320px;
+	font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  // color: var(--main-color-text);
+}
+.container {
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-paddings);
+  padding-right: var(--container-paddings);
+}
+.list-reset {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style-type: none;
+}
+.btn-reset {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+}
+.title {
+  margin: 0;
+  font-weight: 700;
+}
+.text {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 400;
 }
