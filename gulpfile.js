@@ -5,7 +5,6 @@ const gulpSass = require('gulp-sass');
 const cleanCSS = require('gulp-clean-css');
 const autoprefixer = require('gulp-autoprefixer');
 const htmlmin = require('gulp-htmlmin');
-const imagemin = require('gulp-imagemin');
 const rename = require('gulp-rename');
 const sassCompiler = require('sass');
 
@@ -48,18 +47,6 @@ function styles() {
     .pipe(browserSync.stream()); // Обновление браузера
 }
 
-// Задача для минимизации изображений
-function minifyImages() {
-  return gulp.src([paths.images, paths.icons]) // Объединяем изображения и иконки
-    .pipe(imagemin())
-    .pipe(gulp.dest(file => {
-      if (file.relative.startsWith('icons/')) {
-        return paths.dest.icons; // Сохраняем иконки в отдельную папку
-      }
-      return paths.dest.images;  // Сохраняем обычные изображения
-    }));
-}
-
 // Задача для запуска сервера и отслеживания изменений
 function serve() {
   browserSync.init({
@@ -70,9 +57,8 @@ function serve() {
 
   gulp.watch(paths.html, minifyHtml); // Обработка HTML
   gulp.watch(paths.css, styles);       // Обработка CSS
-  gulp.watch([paths.images, paths.icons], minifyImages); // Обработка изображений и иконок
 }
 
 // Задача по умолчанию
-const defaultTask = gulp.series(minifyHtml, styles, minifyImages, serve);
+const defaultTask = gulp.series(minifyHtml, styles, serve);
 exports.default = defaultTask;
